@@ -3,6 +3,7 @@ package com.prestashop.utilities;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+
 
 public class BrowserUtils {
 	/*
@@ -119,7 +122,7 @@ public class BrowserUtils {
 
 	public static WebElement fluentWait(final WebElement webElement, int timeinsec) {
 		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver())
-				.withTimeout(timeinsec, TimeUnit.SECONDS).pollingEvery(timeinsec, TimeUnit.SECONDS)
+				.withTimeout(Duration.ofSeconds(5)).pollingEvery(Duration.ofMillis(100))
 				.ignoring(NoSuchElementException.class);
 		WebElement element = wait.until(new Function<WebDriver, WebElement>() {
 			public WebElement apply(WebDriver driver) {
